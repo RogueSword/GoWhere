@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+## 项目进展说明
+- [x] 20180530 码云迁移至github
+- [x] 20180530 更新首页图标列表
+
 ## Build Setup
 
 ``` bash
