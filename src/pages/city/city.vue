@@ -2,6 +2,8 @@
   <div>
     <city-header></city-header>
     <city-search></city-search>
+    <city-list></city-list>
+    <city-alphabet></city-alphabet>
   </div>
 
 </template>
@@ -10,12 +12,16 @@
 import axios from 'axios'
 import CityHeader from '@/pages/city/components/cityHeader'
 import CitySearch from '@/pages/city/components/citySearch'
+import CityList from '@/pages/city/components/cityList'
+import CityAlphabet from '@/pages/city/components/cityAlphabet'
 
 export default {
   name: 'City',
   components: {
     CityHeader,
-    CitySearch
+    CitySearch,
+    CityList,
+    CityAlphabet
   },
   methods: {
     getCityInfo () {
