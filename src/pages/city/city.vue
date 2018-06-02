@@ -1,6 +1,7 @@
 <template>
   <div>
     <city-header></city-header>
+    <city-search></city-search>
   </div>
 
 </template>
@@ -8,11 +9,13 @@
 <script>
 import axios from 'axios'
 import CityHeader from '@/pages/city/components/cityHeader'
+import CitySearch from '@/pages/city/components/citySearch'
 
 export default {
   name: 'City',
   components: {
-    CityHeader
+    CityHeader,
+    CitySearch
   },
   methods: {
     getCityInfo () {
