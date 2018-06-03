@@ -56,6 +56,11 @@ export default {
     return {
     }
   },
+  mounted () {
+    this.$nextTick(() => {
+      this.scroll = new BScroll(this.$refs.wrapper, {})
+    })
+  },
   computed: {
     cities () {
       return this.list.cities
@@ -63,11 +68,6 @@ export default {
     hotCities () {
       return this.list.hotCities
     }
-  },
-  mounted () {
-    this.$nextTick(() => {
-      this.scroll = new BScroll(this.$refs.wrapper, {})
-    })
   },
   watch: {
     letter () {
