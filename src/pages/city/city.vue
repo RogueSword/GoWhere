@@ -2,8 +2,8 @@
   <div>
     <city-header></city-header>
     <city-search></city-search>
-    <city-list></city-list>
-    <city-alphabet></city-alphabet>
+    <city-list :list="cityList"></city-list>
+    <city-alphabet :list="cityList"></city-alphabet>
   </div>
 
 </template>
@@ -23,15 +23,25 @@ export default {
     CityList,
     CityAlphabet
   },
+  data () {
+    return {
+      cityList: {}
+    }
+  },
   methods: {
     getCityInfo () {
       axios.get('/api/city.json')
-        .then(res => {
-          this.handleGetCityInfoSucc(res)
-        })
+        // .then(res => {
+        //   this.handleGetCityInfoSucc(res)
+        // })
+        .then(this.handleGetCityInfoSucc)
     },
     handleGetCityInfoSucc (res) {
       console.log(res)
+      res = res.data
+      if (res.ret && res.data) {
+        this.cityList = res.data
+      }
     }
   },
   mounted () {
