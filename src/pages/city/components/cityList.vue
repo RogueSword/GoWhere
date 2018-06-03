@@ -5,26 +5,14 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="button">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="button">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="button">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="button">北京</div>
+            <div class="button">{{currentCity}}</div>
           </div>
         </div>
       </div>
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="button-list">
-          <div class="button-wrapper" v-for="item of hotCities" :key="item.id">
+          <div class="button-wrapper" v-for="item of hotCities" :key="item.id" @click="handleCityClick(item.name)">
             <div class="button">{{item.name}}</div>
           </div>
         </div>
@@ -36,7 +24,14 @@
       >
         <div class="title border-topbottom">{{key}}</div>
         <div class="item-list">
-          <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">{{innerItem.name}}</div>
+          <div
+            class="item border-bottom"
+            v-for="innerItem of item"
+            :key="innerItem.id"
+            @click="handleCityClick(innerItem.name)"
+          >
+            {{innerItem.name}}
+          </div>
         </div>
       </div>
     </div>
@@ -45,6 +40,7 @@
 
 <script>
 import BScroll from 'better-scroll'
+import {mapState, mapMutations} from 'vuex'
 
 export default {
   name: 'CityList',
@@ -55,6 +51,22 @@ export default {
   data () {
     return {
     }
+  },
+  methods: {
+    handleCityClick (city) {
+      // 1. 组件调用action
+      // 1.1 由于不涉及异步操作，因此vuex步骤中可以省略action步骤
+      // this.$store.dispatch('changeCity', city)
+      // 使用了高逼格写法，淘汰该写法
+      // this.$store.commit('changeCity', city)
+
+      // vuex高逼格写法2：直接使用映射的changeCity方法，替代上一行的写法
+      this.changeCity(city)
+      // 路由跳转
+      this.$router.push('/')
+    },
+    // vuex高逼格写法1：有一个mutation叫做changeCity,将mutation映射到组件中叫做changeCity的方法里面
+    ...mapMutations(['changeCity'])
   },
   mounted () {
     this.$nextTick(() => {
@@ -67,7 +79,11 @@ export default {
     },
     hotCities () {
       return this.list.hotCities
-    }
+    },
+    // 将vuex的city映射到计算属性里面，属性的名字叫做currentCity
+    ...mapState({
+      'currentCity': 'city'
+    })
   },
   watch: {
     letter () {
