@@ -13,12 +13,16 @@
         </div>
       </div>
     </div>
-    <common-gallary :imgs="gallaryImgs" v-show="shwoGallary" @close="handleGallaryClose"></common-gallary>
+    <fade-animation>
+      <!-- common-gallary作为插槽放入animation之中 -->
+      <common-gallary :imgs="gallaryImgs" v-show="shwoGallary" @close="handleGallaryClose"></common-gallary>
+    </fade-animation>
   </div>
 </template>
 
 <script>
 import CommonGallary from 'common/gallary/gallary'
+import FadeAnimation from 'common/fade/fadeAnimation'
 
 export default {
   name: 'DetailBanner',
@@ -41,7 +45,8 @@ export default {
     }
   },
   components: {
-    CommonGallary
+    CommonGallary,
+    FadeAnimation
   }
 }
 </script>
