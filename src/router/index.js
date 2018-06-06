@@ -24,5 +24,8 @@ export default new Router({
       name: 'detail',
       component: Detail
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) { // vue-router，页面滚动设置文档. 在路由切换时候，页面始终保持在最顶部
+    return { x: 0, y: 0 }
+  }
 })

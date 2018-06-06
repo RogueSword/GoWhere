@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'DetailList',
+  name: 'DetailList', // 递归组件时候用到该名字
   props: {
     list: Array
   },
