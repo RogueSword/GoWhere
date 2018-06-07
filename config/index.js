@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'http://localhost:8080', // 生产上联调时候，配置后台服务器地址即可。此时需要删除pathRewrite内容
         pathRewrite: {
           '^/api': '/static/mock'
         }
